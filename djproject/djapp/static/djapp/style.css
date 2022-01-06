@@ -1,0 +1,21 @@
+.container-fluid {
+    border: 1px solid black;
+    height: 100vh;
+}
+
+
+.row {
+    border: 1px solid hotpink;
+}
+
+.col {
+    border: 1px solid lawngreen;
+}
+.tall {
+    height: 100vh;
+    border: 1px solid black;
+}
+
+.half-height {
+    height: 50vh;
+}
