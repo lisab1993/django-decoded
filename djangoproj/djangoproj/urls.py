@@ -14,8 +14,8 @@ router.register(r'groups', views.GroupViewSet, basename='Groups')
 router.register(r'Step/', views.StepViewSet, basename='Step')
 
 vue_urls = [
-  path('', lambda request: HttpResponse(render(request, 'vue_index.html'))),
-  path('another-path/', lambda request: HttpResponse(render(request, 'vue_index.html'))),
+  path('', views.frontend),
+  path('another-path/', views.frontend),
 ]
 
 urlpatterns = [
