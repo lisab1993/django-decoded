@@ -13,20 +13,18 @@ router.register(r'users', views.UserViewSet, basename='Users')
 router.register(r'groups', views.GroupViewSet, basename='Groups')
 router.register(r'Step/', views.StepViewSet, basename='Step')
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+vue_urls = [
+  path('', lambda request: HttpResponse(render(request, 'vue_index.html'))),
+  path('another-path/', lambda request: HttpResponse(render(request, 'vue_index.html'))),
+]
+
 urlpatterns = [
-    path('', include(router.urls)),
+    path('router/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
     path('api/', include('tutorialapp.urls')),
+    path('', include(vue_urls))
 ]
 
-# vue_urls = [
-#     path('', lambda request: HttpResponse(render(request, 'vue_index.html'))),
-# ]
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('api/', include('tutorialapp.urls')),
-#     path('', include(vue_urls)),
-# ]
+
+

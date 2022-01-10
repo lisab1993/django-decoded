@@ -25,8 +25,14 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 class StepViewSet(viewsets.ModelViewSet):
-    steps = Step.objects.all()
+
+    queryset = Step.objects.all()
     serializer_class = StepSerializer
 
 def myview(request):
     return HttpResponse('myview worked')
+
+
+# Create your views here.
+def frontend(request): 
+  return HttpResponse(render(request, 'vue_index.html'))
