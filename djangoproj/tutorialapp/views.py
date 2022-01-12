@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from rest_framework import permissions
-from tutorialapp.serializers import UserSerializer, GroupSerializer
+from rest_framework import viewsets, permissions, generics
+from rest_framework.response import Response
+from tutorialapp.serializers import UserSerializer, GroupSerializer, StepSerializer
 from tutorialapp.models import Step
-from tutorialapp.serializers import StepSerializer
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -24,15 +24,24 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class StepViewSet(viewsets.ModelViewSet):
 
+class StepView(generics.RetrieveAPIView):
     queryset = Step.objects.all()
-    serializer_class = StepSerializer
 
-def myview(request):
-    return HttpResponse('myview worked')
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = StepSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+# class StepViewSet(viewsets.ModelViewSet):
+
+#     queryset = Step.objects.all()
+#     serializer_class = StepSerializer
+
+# def myview(request):
+#     return HttpResponse('myview worked')
 
 
-# Create your views here.
-def frontend(request): 
-  return HttpResponse(render(request, 'vue_index.html'))
+# # Create your views here.
+# def frontend(request):
+#   return HttpResponse(render(request, 'vue_index.html'))
