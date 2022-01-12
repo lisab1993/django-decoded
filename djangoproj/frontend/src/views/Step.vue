@@ -62,7 +62,7 @@ export default {
     getAPI
       .get("/step/")
       .then((response) => {
-        console.log("Post API has recieved data");
+        console.log(response, 'data received');
         this.output = response.data;
       })
       .catch((err) => {

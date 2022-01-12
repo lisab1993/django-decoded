@@ -9,5 +9,5 @@ from . views import StepView
 
 urlpatterns = [
     # path('', include(router.urls)),
-    path('', StepView.as_view(), name='step_view')
+    path('step/', StepView.as_view(), name='step_view')
 ]
