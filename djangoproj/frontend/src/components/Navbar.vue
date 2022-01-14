@@ -1,36 +1,88 @@
 <template>
-  <div class="nav-bar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white nav-1">
-      <div class="container mw-0 px-3">
+  <div>
+    <div>
+      <a
+        data-bs-toggle="collapse"
+        href="#appNameCollapse"
+        role="button"
+        aria-expanded="false"
+        aria-controls="appNameCollapse"
+      >
+        >app_name (dir)
+      </a>
 
-        <a class="navbar-brand" href="#">
-        <img src="../assets/brand-name.png" width="" height="27" class="d-inline-block align-top" alt="" loading="lazy">
+      <div class="collapse" id="appNameCollapse">
+        <a
+          data-bs-toggle="collapse"
+          href="#migrationsCollapse"
+          role="button"
+          aria-expanded="false"
+          aria-controls="migrationsCollapse"
+        >
+          >migrations (dir)
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-            <router-link :to = "{ name:'step' }" exact>Step</router-link>
-            </li>
-          </ul>
+        <div class="collapse" id="migrationsCollapse">migrations listed here</div>
+        <div>
+        <a
+          data-bs-toggle="collapse"
+          href="#templatesCollapse"
+          role="button"
+          aria-expanded="false"
+          aria-controls="templatesCollapse"
+        >
+          >templates/appname (dir)
+        </a>
         </div>
-
+        <div class="collapse" id="templatesCollapse">index.html</div>
+        <div>__init__.py</div>
+        <div>admin.py</div>
+        <div>apps.py</div>
+        <div>models.py</div>
+        <div>tests.py</div>
+        <div>urls.py</div>
+        <div>views.py</div>
       </div>
-    </nav>
+    </div>
+
+    <a
+      data-bs-toggle="collapse"
+      href="#projectNameCollapse"
+      role="button"
+      aria-expanded="false"
+      aria-controls="projectNameCollapse"
+    >
+      >project_name(dir)
+    </a>
+    <div class="collapse" id="projectNameCollapse">
+      <div>__init__.py</div>
+      <div>asgi.py</div>
+      <div>settings.py</div>
+      <div>urls.py</div>
+      <div>wsgi.py</div>
+    </div>
+
+    <div>Pipfile</div>
+    <div>Pipfile.lock</div>
+    <div>manage.py</div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'Navbar',
-  }
+export default {
+  name: "Navbar",
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style scoped>
-    a {
-      color:#000;
-  }
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* .collapse {
+  background-color: hotpink;
+} */
 </style>

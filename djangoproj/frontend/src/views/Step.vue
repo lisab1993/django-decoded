@@ -1,44 +1,13 @@
 <template>
-  <div class="step">
-    <Navbar></Navbar>
-    <div class="album py-5 bg-light">
-      <div class="container">
-          Step.vue page
-        <div class="row">
-          <div v-for="step in output" :key="step.id" class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="https://via.placeholder.com/150x100"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h4 class="">
-                  <a class="text-secondary" href="">{{ step.name }}</a>
-                </h4>
-                <p class="card-text">{{ step.text }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a
-                      href=""
-                      class="btn btn-sm btn-outline-primary"
-                      role="button"
-                      aria-pressed="true"
-                      >View</a
-                    >
-                    <a
-                      href=""
-                      class="btn btn-sm btn-outline-secondary"
-                      role="button"
-                      aria-pressed="true"
-                      >Edit</a
-                    >
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
+  <div>
+    <div class="container-fluid">
+      <div class="row full-height">
+        <div class="col-3 navigation-station"><Navbar></Navbar></div>
+        <div class="col-9">
+          <div class="row infopanel">
+            <div class="col"><Infopanel></Infopanel></div>
           </div>
+          <div class="row tutorialstarts"><div class="col"><Tutorialstarts></Tutorialstarts></div></div>
         </div>
       </div>
     </div>
@@ -48,6 +17,11 @@
 <script>
 import { getAPI } from "../axios-api";
 import Navbar from "../components/Navbar";
+import Infopanel from "../components/Infopanel.vue";
+import Tutorialstarts from "../components/Tutorialstarts.vue";
+
+
+
 export default {
   name: "Step",
   data() {
@@ -57,6 +31,8 @@ export default {
   },
   components: {
     Navbar,
+    Infopanel,
+    Tutorialstarts,
   },
   created() {
     getAPI
@@ -73,4 +49,24 @@ export default {
 </script>
 
 <style scoped>
+.container-fluid {
+  height: 100vh;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.infopanel {
+  height: 80vh;
+}
+
+.tutorialstarts {
+    border-top: 1px solid black;
+    height: 20vh;
+}
+
+.navigation-station {
+    border-right: 1px solid black;
+}
 </style>
