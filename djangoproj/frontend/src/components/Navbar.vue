@@ -1,90 +1,160 @@
 <template>
   <div>
     <div>
-      <a
-        data-bs-toggle="collapse"
-        href="#appNameCollapse"
-        role="button"
-        aria-expanded="false"
-        aria-controls="appNameCollapse"
-      >
-        >app_name
-      </a>
-
-      <div class="collapse nested-one" id="appNameCollapse">
+      <button class="hidden-button" @click="updateSelected('app_name')">
         <a
           data-bs-toggle="collapse"
-          href="#migrationsCollapse"
+          href="#appNameCollapse"
           role="button"
           aria-expanded="false"
-          aria-controls="migrationsCollapse"
+          aria-controls="appNameCollapse"
         >
-          >migrations
+          >app_name
         </a>
-        <div class="collapse nested-two" id="migrationsCollapse">
-          <div>__pycache__</div>
-          <div>__init__.py</div>
-          <div>00001_initial.py</div>
-          <div>00002_some_update.py</div>
-        </div>
-        <div>
+      </button>
+
+      <div class="collapse nested-one" id="appNameCollapse">
+        <button class="hidden-button" @click="updateSelected('migrations')">
           <a
             data-bs-toggle="collapse"
-            href="#templatesCollapse"
+            href="#migrationsCollapse"
             role="button"
             aria-expanded="false"
-            aria-controls="templatesCollapse"
+            aria-controls="migrationsCollapse"
           >
-            >templates
+            >migrations
           </a>
+        </button>
+
+        <div class="collapse nested-two" id="migrationsCollapse">
+          <div>
+            <button
+              class="hidden-button"
+              @click="updateSelected('__pycache__ (migrations)')"
+            >
+              __pycache__
+            </button>
+          </div>
+          <div>
+            <button
+              class="hidden-button"
+              @click="updateSelected('__init__.py (migrations)')"
+            >
+              __init__.py
+            </button>
+          </div>
+          <div>
+            <button
+              class="hidden-button"
+              @click="updateSelected('00001_initial.py')"
+            >
+              00001_initial.py
+            </button>
+          </div>
+          <div>
+            <button
+              class="hidden-button"
+              @click="updateSelected('00002_some_update.py')"
+            >
+              00002_some_update.py
+            </button>
+          </div>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('templates')">
+            <a
+              data-bs-toggle="collapse"
+              href="#templatesCollapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="templatesCollapse"
+            >
+              >templates
+            </a>
+          </button>
         </div>
         <!-- <div class="collapse" id="templatesCollapse">index.html</div> -->
         <div class="collapse" id="templatesCollapse">
-          <a
-            class="nested-two"
-            data-bs-toggle="collapse"
-            href="#templatesAppCollapse"
-            role="button"
-            aria-expanded="false"
-            aria-controls="templatesAppCollapse"
-          >
-            >appname
-          </a>
+          <button class="hidden-button" @click="updateSelected('appname')">
+            <a
+              class="nested-two"
+              data-bs-toggle="collapse"
+              href="#templatesAppCollapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="templatesAppCollapse"
+            >
+              >appname
+            </a>
+          </button>
         </div>
-        
+
         <div class="collapse nested-three" id="templatesAppCollapse">
-          <button class="hidden-button" @click="updateSelected('index.html')">index.html</button>
+          <button class="hidden-button" @click="updateSelected('index.html')">
+            index.html
+          </button>
         </div>
-        <div><button class="hidden-button" @click="updateSelected('__init__.py')">__init__.py</button></div>
-        <div><button class="hidden-button" @click="updateSelected('admin.py')">admin.py</button></div>
-        <div><button class="hidden-button" @click="updateSelected('apps.py')">apps.py</button></div>
-        <div><button class="hidden-button" @click="updateSelected('models.py')">models.py</button></div>
-        <div><button class="hidden-button" @click="updateSelected('tests.py')">tests.py</button></div>
-        <div><button class="hidden-button" @click="updateSelected('urls.py')">urls.py</button></div>
-        <div><button class="hidden-button" @click="updateSelected('views.py')">views.py</button></div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('__init__.py (app)')">
+            __init__.py
+          </button>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('admin.py')">
+            admin.py
+          </button>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('apps.py')">
+            apps.py
+          </button>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('models.py')">
+            models.py
+          </button>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('tests.py')">
+            tests.py
+          </button>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('urls.py (app)')">
+            urls.py
+          </button>
+        </div>
+        <div>
+          <button class="hidden-button" @click="updateSelected('views.py')">
+            views.py
+          </button>
+        </div>
       </div>
     </div>
 
-    <a
-      data-bs-toggle="collapse"
-      href="#projectNameCollapse"
-      role="button"
-      aria-expanded="false"
-      aria-controls="projectNameCollapse"
-    >
-      >proj_name
-    </a>
+    <button class="hidden-button" @click="updateSelected('proj_name')">
+      <a
+        data-bs-toggle="collapse"
+        href="#projectNameCollapse"
+        role="button"
+        aria-expanded="false"
+        aria-controls="projectNameCollapse"
+      >
+        >proj_name
+      </a>
+    </button>
+
     <div class="collapse nested-one" id="projectNameCollapse">
-      <div>__init__.py</div>
-      <div>asgi.py</div>
-      <div>settings.py</div>
-      <div>urls.py</div>
-      <div>wsgi.py</div>
+      <div><button class="hidden-button" @click="updateSelected('__init__.py (proj)')">__init__.py</button></div>
+      <div><button class="hidden-button" @click="updateSelected('asgi.py')">asgi.py</button></div>
+      <div><button class="hidden-button" @click="updateSelected('settings.py')">settings.py</button></div>
+      <div><button class="hidden-button" @click="updateSelected('urls.py (proj)')">urls.py</button></div>
+      <div><button class="hidden-button" @click="updateSelected('wsgi.py')">wsgi.py</button></div>
     </div>
 
-    <div>Pipfile</div>
-    <div>Pipfile.lock</div>
-    <div>manage.py</div>
+    <div><button class="hidden-button" @click="updateSelected('Pipfile')">Pipfile</button></div>
+    <div><button class="hidden-button" @click="updateSelected('Pipfile.lock')">Pipfile.lock</button></div>
+    <div><button class="hidden-button" @click="updateSelected('manage.py')">manage.py</button></div>
   </div>
 </template>
 
@@ -98,10 +168,10 @@ export default {
   },
   methods: {
     updateSelected(event) {
-      this.selectedFile = event
-      this.$emit('clicked', event)
-    }
-  }
+      this.selectedFile = event;
+      this.$emit("clicked", event);
+    },
+  },
 };
 </script>
 
