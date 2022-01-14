@@ -2,10 +2,10 @@
   <div>
     <div class="container-fluid">
       <div class="row full-height">
-        <div class="col-3 navigation-station"><Navbar></Navbar></div>
+        <div class="col-3 navigation-station"><Navbar @clicked="onClickChild"></Navbar></div>
         <div class="col-9">
           <div class="row infopanel">
-            <div class="col"><Infopanel></Infopanel></div>
+            <div class="col"><Infopanel :navbarSelected='navbarSelected'></Infopanel></div>
           </div>
           <div class="row tutorialstarts"><div class="col"><Tutorialstarts></Tutorialstarts></div></div>
         </div>
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       output: [],
+      navbarSelected: '',
     };
   },
   components: {
@@ -34,11 +35,17 @@ export default {
     Infopanel,
     Tutorialstarts,
   },
+  methods: {
+    onClickChild(value) {
+      console.log(value, 'this came from child component')
+      this.navbarSelected = value
+    }
+  },
   created() {
     getAPI
       .get("/step/")
       .then((response) => {
-        console.log(response, 'data received');
+        // console.log(response, 'data received');
         this.output = response.data;
       })
       .catch((err) => {

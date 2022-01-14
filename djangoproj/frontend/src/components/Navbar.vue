@@ -8,10 +8,10 @@
         aria-expanded="false"
         aria-controls="appNameCollapse"
       >
-        >app_name (dir)
+        >app_name
       </a>
 
-      <div class="collapse" id="appNameCollapse">
+      <div class="collapse nested-one" id="appNameCollapse">
         <a
           data-bs-toggle="collapse"
           href="#migrationsCollapse"
@@ -19,28 +19,49 @@
           aria-expanded="false"
           aria-controls="migrationsCollapse"
         >
-          >migrations (dir)
+          >migrations
         </a>
-        <div class="collapse" id="migrationsCollapse">migrations listed here</div>
-        <div>
-        <a
-          data-bs-toggle="collapse"
-          href="#templatesCollapse"
-          role="button"
-          aria-expanded="false"
-          aria-controls="templatesCollapse"
-        >
-          >templates/appname (dir)
-        </a>
+        <div class="collapse nested-two" id="migrationsCollapse">
+          <div>__pycache__</div>
+          <div>__init__.py</div>
+          <div>00001_initial.py</div>
+          <div>00002_some_update.py</div>
         </div>
-        <div class="collapse" id="templatesCollapse">index.html</div>
-        <div>__init__.py</div>
-        <div>admin.py</div>
-        <div>apps.py</div>
-        <div>models.py</div>
-        <div>tests.py</div>
-        <div>urls.py</div>
-        <div>views.py</div>
+        <div>
+          <a
+            data-bs-toggle="collapse"
+            href="#templatesCollapse"
+            role="button"
+            aria-expanded="false"
+            aria-controls="templatesCollapse"
+          >
+            >templates
+          </a>
+        </div>
+        <!-- <div class="collapse" id="templatesCollapse">index.html</div> -->
+        <div class="collapse" id="templatesCollapse">
+          <a
+            class="nested-two"
+            data-bs-toggle="collapse"
+            href="#templatesAppCollapse"
+            role="button"
+            aria-expanded="false"
+            aria-controls="templatesAppCollapse"
+          >
+            >appname
+          </a>
+        </div>
+        
+        <div class="collapse nested-three" id="templatesAppCollapse">
+          <button class="hidden-button" @click="updateSelected('index.html')">index.html</button>
+        </div>
+        <div><button class="hidden-button" @click="updateSelected('__init__.py')">__init__.py</button></div>
+        <div><button class="hidden-button" @click="updateSelected('admin.py')">admin.py</button></div>
+        <div><button class="hidden-button" @click="updateSelected('apps.py')">apps.py</button></div>
+        <div><button class="hidden-button" @click="updateSelected('models.py')">models.py</button></div>
+        <div><button class="hidden-button" @click="updateSelected('tests.py')">tests.py</button></div>
+        <div><button class="hidden-button" @click="updateSelected('urls.py')">urls.py</button></div>
+        <div><button class="hidden-button" @click="updateSelected('views.py')">views.py</button></div>
       </div>
     </div>
 
@@ -51,9 +72,9 @@
       aria-expanded="false"
       aria-controls="projectNameCollapse"
     >
-      >project_name(dir)
+      >proj_name
     </a>
-    <div class="collapse" id="projectNameCollapse">
+    <div class="collapse nested-one" id="projectNameCollapse">
       <div>__init__.py</div>
       <div>asgi.py</div>
       <div>settings.py</div>
@@ -71,8 +92,16 @@
 export default {
   name: "Navbar",
   data() {
-    return {};
+    return {
+      selectedFile: "",
+    };
   },
+  methods: {
+    updateSelected(event) {
+      this.selectedFile = event
+      this.$emit('clicked', event)
+    }
+  }
 };
 </script>
 
@@ -82,7 +111,17 @@ a {
   color: black;
 }
 
-/* .collapse {
-  background-color: hotpink;
-} */
+.nested-one {
+  padding-left: 0.5rem;
+}
+.nested-two {
+  padding-left: 1rem;
+}
+.nested-three {
+  padding-left: 1.5rem;
+}
+.hidden-button {
+  background-color: rgba(128, 128, 128, 0);
+  border: none;
+}
 </style>

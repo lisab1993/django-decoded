@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- {{steps}} -->
     <div>
       <!-- Button trigger modal -->
       <button
@@ -23,7 +24,6 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-
             </div>
             <div class="modal-body text-center">
               <!--                  Modal body starts above                -->
@@ -33,35 +33,15 @@
                 data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
-                  <div class="carousel-item active" data-bs-interval="10000">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Esse, non eaque vitae quasi ratione ut id quo hic quod quia
-                    magni! Dolore id sed dicta esse cupiditate natus provident
-                    repellendus? Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Nihil fugiat, velit, hic a, minus quis
-                    facere repellendus voluptates adipisci voluptatibus neque
-                    minima! Impedit quidem commodi, eius quod dolore doloremque
-                    harum!
-                  </div>
-                  <div class="carousel-item" data-bs-interval="2000">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Numquam iusto, autem quidem consequatur rem voluptate sequi
-                    odit exercitationem omnis modi, voluptatibus cumque minima
-                    temporibus itaque recusandae a laboriosam dolores totam?
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Neque, nulla. Ullam, sunt atque est tempore magni, qui
-                    ratione asperiores aliquid maxime sint molestiae
-                    voluptatibus. Minus repudiandae ea magnam fuga tempora.
-                  </div>
-                  <div class="carousel-item">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Reiciendis nemo labore velit ducimus quod. Ipsum et,
-                    repellendus debitis ducimus magni, sequi possimus aspernatur
-                    voluptatum rerum excepturi neque voluptatem sunt rem. Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit. Porro
-                    perspiciatis laborum cum fuga, quae hic veritatis officiis
-                    nihil possimus, consequatur ex, dolor quis fugiat saepe?
-                    Deleniti consequuntur unde mollitia non!
+                  <div
+                    class="carousel-item"
+                    v-for="(step, idx) in steps"
+                    :key="step.id"
+                    :class="{ active: idx == 0 }"
+                    data-bs-interval="2000"
+                  >
+                    <div>{{ step.name }}</div>
+                    <div>{{ step.text }}</div>
                   </div>
                 </div>
                 <button
@@ -109,8 +89,26 @@
 </template>
 
 <script>
+import { getAPI } from "../axios-api";
+
 export default {
   name: "Tutorialstarts",
+  data() {
+    return {
+      steps: [],
+    };
+  },
+  created() {
+    getAPI
+      .get("/step/")
+      .then((response) => {
+        console.log(response, "got the steps in tutorialstarts");
+        this.steps = response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 </script>
 
