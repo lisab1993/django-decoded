@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
-from tutorialapp.serializers import UserSerializer, GroupSerializer, StepSerializer
-from tutorialapp.models import Step
+from tutorialapp.serializers import UserSerializer, GroupSerializer, StepSerializer, PageSerializer
+from tutorialapp.models import Step, Page
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -31,6 +31,15 @@ class StepView(generics.RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = StepSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class PageView(generics.RetrieveAPIView):
+    queryset = Page.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = PageSerializer(queryset, many=True)
         return Response(serializer.data)
 
 # class StepViewSet(viewsets.ModelViewSet):

@@ -17,5 +17,10 @@ export default new VueRouter({
         name: 'step',
         component: Step,
         },
+        {
+        path: '/',
+        name: 'page',
+        component: Step,
+        },
     ]
 })

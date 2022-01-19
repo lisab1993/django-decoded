@@ -7,7 +7,7 @@
         type="button"
         class="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#beginnerModal"
       >
         Start Beginner Walkthrough
       </button>
@@ -15,22 +15,23 @@
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal"
+        id="beginnerModal"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="beginnerModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="beginnerModalLabel">Modal title</h5>
             </div>
             <div class="modal-body text-center">
               <!--                  Modal body starts above                -->
               <div
                 id="carouselExampleDark"
                 class="carousel carousel-dark slide"
-                data-bs-ride="carousel"
+                data-ride="carousel"
+                data-interval="false"
               >
                 <div class="carousel-inner">
                   <div
@@ -38,7 +39,6 @@
                     v-for="(step, idx) in steps"
                     :key="step.id"
                     :class="{ active: idx == 0 }"
-                    data-bs-interval="2000"
                   >
                     <div>{{ step.name }}</div>
                     <div>{{ step.text }}</div>
@@ -85,6 +85,69 @@
         </div>
       </div>
     </div>
+    <div>
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#advancedModal"
+      >
+        Start Advanced Walkthrough
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="advancedModal"
+        tabindex="-1"
+        aria-labelledby="advancedModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="advancedModalLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="checkboxItem"
+                />
+                <label class="form-check-label" for="checkboxItem">
+                  Start Project
+                </label>
+              </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -113,25 +176,11 @@ export default {
 </script>
 
 <style scoped>
-.modal {
-  padding-right: 53vw;
+.modal-dialog {
+  max-width: 80vw !important;
 }
 .modal-body {
   padding: 0;
-}
-.modal-header {
-  width: 80vw;
-  justify-content: center;
-}
-.modal-title {
-  margin: 0;
-}
-
-.modal-content {
-  width: 80vw;
-}
-.modal-footer {
-  width: 80vw;
 }
 
 .carousel {
@@ -140,13 +189,15 @@ export default {
 }
 .carousel-inner {
   height: 75vh;
+  width: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 .carousel-item {
   height: 75vh;
-  width: 80vw;
   background-color: lightpink;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  border-left: 0.08rem solid black;
+  border-right: 0.08rem solid black;
 }
 
 .carousel-control-prev {

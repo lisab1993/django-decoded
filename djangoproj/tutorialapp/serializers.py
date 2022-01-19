@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from tutorialapp.models import Step
+from tutorialapp.models import Step, Page
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -24,3 +24,10 @@ class StepSerializer(serializers.ModelSerializer):
     class Meta:
         model = Step
         fields = ['name', 'number', 'text', 'completed']
+
+class PageSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(max_length=100)
+    content = serializers.CharField()
+    class Meta:
+        model = Step
+        fields = ['title', 'content']
